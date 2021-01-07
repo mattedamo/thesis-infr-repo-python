@@ -23,3 +23,8 @@ jobs:
             token: ${{secrets.API_TOKEN_GITHUB}}
             path: code-repo
       - run: ls
+      - run: cp code-repo/ile.yaml main/
+      - run: cd main
+      - run: ls
+      - run: rm ile.yaml
+      - run: ls 
