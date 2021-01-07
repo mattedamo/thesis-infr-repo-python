@@ -22,8 +22,10 @@ jobs:
             repository: mattedamo/thesis-code-repo-python
             token: ${{secrets.API_TOKEN_GITHUB}}
             path: code-repo
-      - run: ls
-      - run: cp code-repo/file.yaml main/file.yaml
-      - run: ls main/
-      - run: rm -f main/file.yaml
-      - run: ls main/
+      - run: | 
+          ls
+          cp code-repo/file.yaml main/file.yaml
+          ls main/
+          cat main/file.yaml
+          rm -f main/file.yaml
+          ls main/
