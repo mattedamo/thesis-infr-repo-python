@@ -1,31 +1,22 @@
-name: run-py-script
+name: Update-infrastructure-backend
 
 on: 
-  push:
-    branches:
-      - master
-
+  workflow_dispatch:
+    inputs:
+      sha-tag:
+        description: 'sha tag for new image'     
+        required: true
+      code-branch:
+        description: 'branch of code repository'
+        required: true
 jobs:
-  buidl:
-    name: build
+  setup:
+    name: Setup
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code of this repo
-        uses: actions/checkout@v2
-        with:
-            path: main
-
-      - name: Checkout code of code repo
-        uses: actions/checkout@v2
-        with:
-            repository: mattedamo/thesis-code-repo-python
-            token: ${{secrets.API_TOKEN_GITHUB}}
-            path: code-repo
-      - run: | 
-          ls
-          cp code-repo/file.yaml main/file.yaml
-          ls main/
-          cat main/file.yaml
-          rm -f main/file.yaml
-          ls main/
+      - name: Print inputs
+        run: |
+          echo "sha: ${{ github.event.inputs.sha-tag }}"
+          echo "Log level: ${{ github.event.inputs.code-branch}}"
+          
+          
